@@ -5,8 +5,8 @@ This middleware provide framework-agnostic possibility to preventing your site f
 
 ## How it works?
 
-* Add `X-Robots-Tag` with `noindex, nofollow` value.
-* Add `robots.txt` with `Disallow: /` body
+* Add `X-Robots-Tag` header with `noindex, nofollow` value.
+* Add `robots.txt` "file" with `Disallow: /` body
 
 ## Installation
 
