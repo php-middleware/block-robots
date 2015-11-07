@@ -6,6 +6,7 @@ use PhpMiddleware\BlockRobots\BlockRobotsMiddleware;
 use Psr\Http\Message\ResponseInterface;
 use Zend\Diactoros\Response;
 use Zend\Diactoros\ServerRequest;
+use Zend\Diactoros\Uri;
 
 class BlockRobotsMiddlewareTest extends \PHPUnit_Framework_TestCase
 {
@@ -33,14 +34,14 @@ class BlockRobotsMiddlewareTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue($calledOut, 'Out was not called');
         $this->assertNotSame($response, $result);
+        $this->assertInstanceOf(ResponseInterface::class, $result);
         $this->assertEquals('noindex, nofollow', $result->getHeaderLine(BlockRobotsMiddleware::ROBOTS_HEADER));
     }
 
     public function testRobots()
     {
-        $uri = new \Zend\Diactoros\Uri('http://foo/robots.txt');
-        $request = new ServerRequest();
-        $request = $request->withUri($uri);
+        $uri = new Uri('http://foo/robots.txt');
+        $request = new ServerRequest([], [], $uri);
         $response = new Response();
         $calledOut = false;
 
@@ -55,8 +56,9 @@ class BlockRobotsMiddlewareTest extends \PHPUnit_Framework_TestCase
 
         $this->assertFalse($calledOut, 'Out was called');
         $this->assertNotSame($response, $result);
+        $this->assertInstanceOf(ResponseInterface::class, $result);
         $this->assertFalse($result->hasHeader(BlockRobotsMiddleware::ROBOTS_HEADER));
-        $this->assertEquals('Disallow: /', (string) $result->getBody());
-        $this->assertEquals('text/plain', $result->getHeaderLine('Content-Type'));
+        $this->assertSame("User-Agent: *\nDisallow: /", (string) $result->getBody());
+        $this->assertSame('text/plain', $result->getHeaderLine('Content-Type'));
     }
 }

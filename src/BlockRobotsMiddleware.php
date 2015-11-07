@@ -4,6 +4,7 @@ namespace PhpMiddleware\BlockRobots;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Zend\Diactoros\Response;
 
 class BlockRobotsMiddleware
 {
@@ -12,8 +13,10 @@ class BlockRobotsMiddleware
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $out = null)
     {
         if ($request->getUri()->getPath() === '/robots.txt') {
-            $response->getBody()->write('Disallow: /');
-            return $response->withHeader('Content-Type', 'text/plain');
+            $newReponse = new Response('php://memory', 200, ['Content-Type' => 'text/plain']);
+            $newReponse->getBody()->write("User-Agent: *\nDisallow: /");
+
+            return $newReponse;
         }
         /* @var $out ResponseInterface */
         $response = $out === null ? $response : $out($request, $response);
