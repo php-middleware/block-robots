@@ -1,11 +1,12 @@
 {
     "name": "php-middleware/block-robots",
-    "description": "Middleware to avoid search engine indexing with PSR-7",
+    "description": "PSR-15 middleware to avoid search engine indexing with PSR-7",
     "type": "library",
     "keywords": [
         "middleware",
         "psr",
         "psr-7",
+        "psr-15",
         "seo",
         "robots"
     ],
