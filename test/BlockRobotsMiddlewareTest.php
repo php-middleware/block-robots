@@ -3,12 +3,13 @@
 namespace PhpMiddlewareTest\BlockRobots;
 
 use PhpMiddleware\BlockRobots\BlockRobotsMiddleware;
+use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Zend\Diactoros\Response;
 use Zend\Diactoros\ServerRequest;
 use Zend\Diactoros\Uri;
 
-class BlockRobotsMiddlewareTest extends \PHPUnit_Framework_TestCase
+class BlockRobotsMiddlewareTest extends TestCase
 {
     protected $middleware;
 
