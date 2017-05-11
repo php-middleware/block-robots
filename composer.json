@@ -1,20 +1,23 @@
 {
     "name": "php-middleware/block-robots",
-    "description": "Middleware to avoid search engine indexing with PSR-7",
+    "description": "PSR-15 middleware to avoid search engine indexing with PSR-7",
     "type": "library",
     "keywords": [
         "middleware",
         "psr",
         "psr-7",
+        "psr-15",
         "seo",
         "robots"
     ],
     "require": {
-        "php": ">=5.5",
-        "psr/http-message": "^1.0"
+        "php": ">=5.6",
+        "psr/http-message": "^1.0",
+        "php-middleware/double-pass-compatibility": "^1.0",
+        "http-interop/http-middleware": "^0.4.1"
     },
     "require-dev": {
-        "phpunit/phpunit": "^4.8.6",
+        "phpunit/phpunit": "^5.7 || ^6.1",
         "zendframework/zend-diactoros": "^1.1.3"
     },
     "autoload": {

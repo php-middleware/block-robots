@@ -1,21 +1,17 @@
-# block-robots middleware [![Build Status](https://travis-ci.org/php-middleware/block-robots.svg)](https://travis-ci.org/php-middleware/block-robots)
-Middleware to avoid search engine indexing
+# block-robots middleware [![Build Status](https://travis-ci.org/php-middleware/block-robots.svg?branch=master)](https://travis-ci.org/php-middleware/block-robots)
+PSR-15 middleware to avoid search engine indexing with PSR-7
 
 This middleware provide framework-agnostic possibility to preventing your site from being indexed.
 
 ## How it works?
 
 * Add `X-Robots-Tag` header with `noindex, nofollow` value.
-* Add `robots.txt` "file" with `Disallow: /` body
+* Add `robots.txt` "file" with `User-Agent: * Disallow: /` body
 
 ## Installation
 
-```json
-{
-    "require": {
-        "php-middleware/block-robots": "^1.0.0"
-    }
-}
+```bash
+composer require php-middleware/block-robots
 ```
 
 ```php
